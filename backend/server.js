@@ -6,8 +6,12 @@ import crypto from 'node:crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
-const DATA_FILE = process.env.DATA_FILE ? path.resolve(process.env.DATA_FILE) : path.join(DATA_DIR, 'shops.json');
+const DEFAULT_DATA_DIR = path.join(__dirname, 'data');
+const DEFAULT_DATA_FILE = path.join(DEFAULT_DATA_DIR, 'shops.json');
+const REQUESTED_DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : null;
+const REQUESTED_DATA_FILE = process.env.DATA_FILE ? path.resolve(process.env.DATA_FILE) : null;
+let DATA_DIR = REQUESTED_DATA_DIR || DEFAULT_DATA_DIR;
+let DATA_FILE = REQUESTED_DATA_FILE || path.join(DATA_DIR, 'shops.json');
 const PORT = Number(process.env.PORT || 5046);
 const HOST = process.env.HOST || '0.0.0.0';
 const MAX_BODY_BYTES = 1_000_000;
@@ -73,14 +77,62 @@ function parseJsonBody(req) {
   });
 }
 
-async function ensureDataFile() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
+async function ensureDataFileAt(dataDir, dataFile) {
+  await fs.mkdir(dataDir, { recursive: true });
 
   try {
-    await fs.access(DATA_FILE);
+    await fs.access(dataFile);
   } catch {
-    await fs.writeFile(DATA_FILE, '[]\n', 'utf8');
+    await fs.writeFile(dataFile, '[]\n', 'utf8');
   }
+}
+
+async function ensureDataFile() {
+  const candidates = [];
+
+  if (REQUESTED_DATA_FILE) {
+    candidates.push({
+      dataDir: path.dirname(REQUESTED_DATA_FILE),
+      dataFile: REQUESTED_DATA_FILE,
+      source: 'DATA_FILE',
+    });
+  } else if (REQUESTED_DATA_DIR) {
+    candidates.push({
+      dataDir: REQUESTED_DATA_DIR,
+      dataFile: path.join(REQUESTED_DATA_DIR, 'shops.json'),
+      source: 'DATA_DIR',
+    });
+  }
+
+  candidates.push({
+    dataDir: DEFAULT_DATA_DIR,
+    dataFile: DEFAULT_DATA_FILE,
+    source: 'default',
+  });
+
+  let lastError = null;
+
+  for (const candidate of candidates) {
+    try {
+      await ensureDataFileAt(candidate.dataDir, candidate.dataFile);
+      DATA_DIR = candidate.dataDir;
+      DATA_FILE = candidate.dataFile;
+
+      if (candidate.source !== 'default' && candidate.dataDir !== DEFAULT_DATA_DIR) {
+        console.log(`Using data directory: ${DATA_DIR}`);
+      } else if (candidate.source === 'default' && REQUESTED_DATA_DIR) {
+        console.warn(
+          `Could not use DATA_DIR=${REQUESTED_DATA_DIR}; falling back to ${DEFAULT_DATA_DIR}`,
+        );
+      }
+
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || createHttpError(500, 'Unable to initialize shop datastore');
 }
 
 async function readShops() {
