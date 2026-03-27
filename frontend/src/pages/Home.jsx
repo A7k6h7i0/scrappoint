@@ -24,6 +24,7 @@ import { shopApi } from '../services/api';
 import shopHero from '../assets/shop-hero.svg';
 
 const DEFAULT_RADIUS_KM = 50;
+const RESULTS_PER_PAGE = 24;
 
 const INITIAL_NEW_SHOP = {
   name: '',
@@ -324,6 +325,7 @@ function Home() {
   const [locationStatus, setLocationStatus] = useState('idle');
   const [locationError, setLocationError] = useState('');
   const [radiusKm, setRadiusKm] = useState(DEFAULT_RADIUS_KM);
+  const [currentPage, setCurrentPage] = useState(1);
   const [newShop, setNewShop] = useState(INITIAL_NEW_SHOP);
   const [addShopState, setAddShopState] = useState({ status: 'idle', message: '' });
   const [isGettingFormLocation, setIsGettingFormLocation] = useState(false);
@@ -385,14 +387,14 @@ function Home() {
 
     if (search) {
       return {
-        shops: enriched.slice(0, 24),
+        shops: enriched,
         usedFallback: false,
       };
     }
 
     if (!userLocation) {
       return {
-        shops: enriched.slice(0, 24),
+        shops: enriched,
         usedFallback: false,
       };
     }
@@ -403,7 +405,7 @@ function Home() {
 
     if (withinRadius.length > 0) {
       return {
-        shops: withinRadius.slice(0, 24),
+        shops: withinRadius,
         usedFallback: false,
       };
     }
@@ -411,12 +413,28 @@ function Home() {
     const fallbackShops = enriched.filter((shop) => typeof shop.distanceKm === 'number');
 
     return {
-      shops: (fallbackShops.length > 0 ? fallbackShops : enriched).slice(0, 24),
+      shops: fallbackShops.length > 0 ? fallbackShops : enriched,
       usedFallback: true,
     };
   }, [allShops, radiusKm, search, userLocation]);
 
   const nearbyShops = nearbyState.shops;
+  const totalPages = Math.max(1, Math.ceil(nearbyShops.length / RESULTS_PER_PAGE));
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, radiusKm, userLocation?.latitude, userLocation?.longitude]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const pagedNearbyShops = useMemo(() => {
+    const startIndex = (currentPage - 1) * RESULTS_PER_PAGE;
+    return nearbyShops.slice(startIndex, startIndex + RESULTS_PER_PAGE);
+  }, [currentPage, nearbyShops]);
 
   const handleRetryLocation = async () => {
     setLocationStatus('loading');
@@ -551,7 +569,9 @@ function Home() {
               </label>
 
               <span className="inline-flex w-fit items-center rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-600">
-                Showing the nearest {Math.min(24, nearbyShops.length)} stores
+                Showing page {currentPage} of {totalPages} with{' '}
+                {Math.min(RESULTS_PER_PAGE, Math.max(0, nearbyShops.length - (currentPage - 1) * RESULTS_PER_PAGE))}{' '}
+                stores
               </span>
             </div>
 
@@ -900,10 +920,40 @@ function Home() {
             </p>
           </div>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {nearbyShops.map((shop) => (
-              <ShopCard key={shop.id || shop._id || `${shop.name}-${shop.address}`} shop={shop} />
-            ))}
+          <div className="space-y-6">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+              {pagedNearbyShops.map((shop) => (
+                <ShopCard key={shop.id || shop._id || `${shop.name}-${shop.address}`} shop={shop} />
+              ))}
+            </div>
+
+            {nearbyShops.length > RESULTS_PER_PAGE ? (
+              <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm text-slate-600">
+                  Page {currentPage} of {totalPages}
+                </p>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                    disabled={currentPage === 1}
+                    className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Previous
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                    disabled={currentPage === totalPages}
+                    className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            ) : null}
           </div>
         )}
       </section>
