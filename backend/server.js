@@ -15,9 +15,17 @@ let DATA_FILE = REQUESTED_DATA_FILE || path.join(DATA_DIR, 'shops.json');
 const PORT = Number(process.env.PORT || 5046);
 const HOST = process.env.HOST || '0.0.0.0';
 const MAX_BODY_BYTES = 1_000_000;
+const CORS_ORIGIN = (() => {
+  const origin = process.env.CORS_ORIGIN?.trim();
+  if (!origin || origin === '*') {
+    return '*';
+  }
+
+  return origin.replace(/\/$/, '');
+})();
 
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || '*',
+  'Access-Control-Allow-Origin': CORS_ORIGIN,
   'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
   'Access-Control-Max-Age': '86400',
