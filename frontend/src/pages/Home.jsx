@@ -531,15 +531,15 @@ function Home() {
           <div className="space-y-6 p-5 sm:p-7 lg:p-10">
             <div className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 text-sm font-medium text-rose-700">
               <Sparkles className="h-4 w-4" />
-              Nearby stores based on your current location
+              Nearby scrap shops based on your location
             </div>
 
             <div className="space-y-3">
               <h2 className="max-w-2xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl xl:text-6xl">
-                Find the closest shops around you, fast.
+                Find the closest scrap shops around you, fast.
               </h2>
               <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                We use your browser location, fetch the live store catalog, and sort the results by
+                We use your browser location, fetch the live scrap catalog, and sort the results by
                 distance so the nearest stores rise to the top automatically.
               </p>
             </div>
@@ -607,11 +607,6 @@ function Home() {
                 </span>
               ) : null}
             </div>
-
-            <p className="text-sm leading-6 text-slate-500">
-              Search a place name like Hyderabad to see all shops listed there, or use the form on
-              the right to add a new shop directly to the server.
-            </p>
           </div>
 
           <div className="space-y-4 bg-slate-950 p-5 text-white sm:p-7 lg:p-10">
