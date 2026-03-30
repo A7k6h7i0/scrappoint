@@ -62,14 +62,13 @@ function normalizeError(error) {
 }
 
 export const shopApi = {
-  getStorePage: async ({ page = 1, limit = 200, searchQuery = '' } = {}) => {
+  getStorePage: async ({ page = 1, limit = 200 } = {}) => {
     try {
       const response = await apiClient.get('/shops', {
         params: {
           page,
           limit,
           type: 'shop',
-          ...(searchQuery ? { search: searchQuery } : {}),
         },
       });
 
@@ -82,9 +81,9 @@ export const shopApi = {
     }
   },
 
-  getAllShops: async ({ searchQuery = '' } = {}) => {
+  getAllShops: async () => {
     try {
-      const firstPage = await shopApi.getStorePage({ page: 1, limit: 200, searchQuery });
+      const firstPage = await shopApi.getStorePage({ page: 1, limit: 200 });
       const pagination = firstPage.pagination;
 
       if (!pagination?.hasNextPage) {
@@ -97,7 +96,7 @@ export const shopApi = {
       );
 
       const remainingPages = await Promise.all(
-        pageNumbers.map((page) => shopApi.getStorePage({ page, limit: 200, searchQuery })),
+        pageNumbers.map((page) => shopApi.getStorePage({ page, limit: 200 })),
       );
 
       return [firstPage.items, ...remainingPages.map((page) => page.items)].flat();

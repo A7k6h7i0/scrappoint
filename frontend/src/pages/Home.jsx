@@ -62,18 +62,6 @@ function getDistanceKm(userLocation, shop) {
   return earthRadiusKm * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
-function formatDistance(distanceKm) {
-  if (typeof distanceKm !== 'number' || Number.isNaN(distanceKm)) {
-    return null;
-  }
-
-  if (distanceKm < 1) {
-    return `${Math.round(distanceKm * 1000)} m away`;
-  }
-
-  return `${distanceKm.toFixed(distanceKm >= 10 ? 0 : 1)} km away`;
-}
-
 function formatRating(rating, reviews) {
   if (rating == null && reviews == null) return null;
 
@@ -148,7 +136,6 @@ function ShopCard({ shop }) {
   const tags = getPrimaryTags(shop);
   const image = getShopImage(shop);
   const [imageFailed, setImageFailed] = useState(false);
-  const distanceLabel = formatDistance(shop.distanceKm);
   const hasImage = Boolean(image) && !imageFailed;
   const initials = (shop.name || shop.shopName || 'Shop')
     .split(' ')
@@ -200,11 +187,6 @@ function ShopCard({ shop }) {
             </span>
           )}
 
-          {distanceLabel ? (
-            <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur">
-              {distanceLabel}
-            </span>
-          ) : null}
         </div>
       </div>
 
@@ -366,18 +348,19 @@ function Home() {
   }, []);
 
   const shopsQuery = useQuery({
-    queryKey: ['stores', search],
-    queryFn: () => shopApi.getAllShops({ searchQuery: search }),
+    queryKey: ['stores'],
+    queryFn: () => shopApi.getAllShops(),
   });
 
   const allShops = useMemo(() => shopsQuery.data ?? [], [shopsQuery.data]);
 
   const nearbyState = useMemo(() => {
-    const enriched = allShops
-      .map((shop) => ({
-        ...shop,
-        distanceKm: getDistanceKm(userLocation, shop),
-      }))
+    const withDistance = allShops.map((shop) => ({
+      ...shop,
+      distanceKm: getDistanceKm(userLocation, shop),
+    }));
+
+    const enriched = withDistance
       .filter((shop) => matchesSearchTerm(shop, search))
       .sort((a, b) => {
         const aDistance = a.distanceKm ?? Number.POSITIVE_INFINITY;
@@ -385,10 +368,37 @@ function Home() {
         return aDistance - bDistance;
       });
 
+    const getSortedFallback = () =>
+      (userLocation ? withDistance : enriched).slice().sort((a, b) => {
+        const aDistance = a.distanceKm ?? Number.POSITIVE_INFINITY;
+        const bDistance = b.distanceKm ?? Number.POSITIVE_INFINITY;
+        return aDistance - bDistance;
+      });
+
+    const fallbackShops = getSortedFallback();
+
     if (search) {
+      if (enriched.length === 0 && allShops.length > 0) {
+        return {
+          shops: fallbackShops,
+          usedFallback: true,
+        };
+      }
+
+      const nearbyShops = enriched.filter(
+        (shop) => typeof shop.distanceKm === 'number' && shop.distanceKm <= radiusKm,
+      );
+      const otherShops = enriched.filter(
+        (shop) => !(typeof shop.distanceKm === 'number' && shop.distanceKm <= radiusKm),
+      );
+      const rankedShops =
+        nearbyShops.length > 0
+          ? [...nearbyShops, ...otherShops].slice(0, Math.max(nearbyShops.length, RESULTS_PER_PAGE))
+          : enriched;
+
       return {
-        shops: enriched,
-        usedFallback: false,
+        shops: rankedShops,
+        usedFallback: nearbyShops.length === 0 && enriched.length > 0,
       };
     }
 
@@ -404,16 +414,18 @@ function Home() {
     );
 
     if (withinRadius.length > 0) {
+      const remainingShops = enriched.filter(
+        (shop) => !(typeof shop.distanceKm === 'number' && shop.distanceKm <= radiusKm),
+      );
+
       return {
-        shops: withinRadius,
-        usedFallback: false,
+        shops: [...withinRadius, ...remainingShops],
+        usedFallback: withinRadius.length < RESULTS_PER_PAGE && remainingShops.length > 0,
       };
     }
 
-    const fallbackShops = enriched.filter((shop) => typeof shop.distanceKm === 'number');
-
     return {
-      shops: fallbackShops.length > 0 ? fallbackShops : enriched,
+      shops: fallbackShops,
       usedFallback: true,
     };
   }, [allShops, radiusKm, search, userLocation]);
@@ -906,9 +918,9 @@ function Home() {
           </div>
         ) : nearbyState.usedFallback && nearbyShops.length > 0 ? (
           <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-amber-800">
-            <p className="font-semibold">No stores were found inside your selected radius.</p>
+            <p className="font-semibold">No exact matches were found for your current filters.</p>
             <p className="mt-1 text-sm leading-6">
-              Showing the closest available shops near your location instead.
+              Showing the closest available shops instead.
             </p>
           </div>
         ) : nearbyShops.length === 0 ? (
