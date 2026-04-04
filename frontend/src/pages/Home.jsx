@@ -145,8 +145,8 @@ function ShopCard({ shop }) {
     .join('');
 
   return (
-    <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
-      <div className="relative h-40 bg-gradient-to-br from-rose-100 via-orange-50 to-amber-100">
+    <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+      <div className="relative h-40 bg-gradient-to-br from-emerald-100 via-lime-50 to-teal-100">
         {hasImage ? (
           <img
             src={image}
@@ -156,9 +156,9 @@ function ShopCard({ shop }) {
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-100 via-orange-50 to-amber-100">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-100 via-lime-50 to-teal-100">
             <div className="flex flex-col items-center gap-3 text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-rose-600 shadow-sm">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-emerald-600 shadow-sm">
                 <Store className="h-7 w-7" />
               </div>
               <div>
@@ -174,11 +174,11 @@ function ShopCard({ shop }) {
             </div>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/35 via-transparent to-transparent" />
 
         <div className="absolute left-4 top-4 flex max-w-[calc(100%-7rem)] flex-wrap gap-2">
           {shop.is_temporarily_closed ? (
-            <span className="rounded-full bg-slate-950/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+            <span className="rounded-full bg-emerald-950/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
               Closed
             </span>
           ) : (
@@ -228,7 +228,7 @@ function ShopCard({ shop }) {
           {shop.workday_timing ? (
             <div className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 shrink-0 text-rose-500" />
+                <MapPin className="h-4 w-4 shrink-0 text-emerald-500" />
                 <span className="min-w-0 break-words">{shop.workday_timing}</span>
               </span>
             </div>
@@ -237,7 +237,7 @@ function ShopCard({ shop }) {
           {shop.phone ? (
             <div className="flex items-center justify-between gap-3">
               <span className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0 text-rose-500" />
+                <Phone className="h-4 w-4 shrink-0 text-emerald-500" />
                 <span className="font-medium text-slate-700">{shop.phone}</span>
               </span>
             </div>
@@ -250,7 +250,7 @@ function ShopCard({ shop }) {
               href={shop.website}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800 sm:flex-none"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-emerald-700 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-600 sm:flex-none"
             >
               <Globe className="h-4 w-4" />
               Website
@@ -262,7 +262,7 @@ function ShopCard({ shop }) {
               href={shop.link}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700 transition hover:bg-rose-100 sm:flex-none"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 transition hover:bg-emerald-100 sm:flex-none"
             >
               Map listing
               <ArrowRight className="h-4 w-4" />
@@ -529,7 +529,7 @@ function Home() {
       <section className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
         <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6 p-5 sm:p-7 lg:p-10">
-            <div className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 text-sm font-medium text-rose-700">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700">
               <Sparkles className="h-4 w-4" />
               Nearby scrap shops based on your location
             </div>
@@ -545,7 +545,7 @@ function Home() {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-              <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition focus-within:border-rose-300 focus-within:ring-4 focus-within:ring-rose-100">
+              <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition focus-within:border-emerald-300 focus-within:ring-4 focus-within:ring-emerald-100">
                 <Search className="h-5 w-5 text-slate-400" />
                 <input
                   value={search}
@@ -558,7 +558,7 @@ function Home() {
               <button
                 type="button"
                 onClick={handleRetryLocation}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 font-medium text-white transition hover:bg-slate-800"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-700 px-5 py-3 font-medium text-white transition hover:bg-emerald-600"
               >
                 <RefreshCw className="h-4 w-4" />
                 Use my location
@@ -609,7 +609,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="space-y-4 bg-slate-950 p-5 text-white sm:p-7 lg:p-10">
+          <div className="space-y-4 bg-emerald-950 p-5 text-white sm:p-7 lg:p-10">
             <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5">
               <img
                 src={newShop.featured_image || shopHero}
@@ -621,7 +621,7 @@ function Home() {
             <div className="space-y-4 rounded-[1.75rem] border border-white/10 bg-white/5 p-5">
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-2">
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rose-200">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-200">
                     Add shop
                   </p>
                   <h3 className="text-xl font-semibold text-white">Create a new listing</h3>
@@ -629,13 +629,13 @@ function Home() {
                     Add a shop, fetch nearby results, or drop in a better image URL.
                   </p>
                 </div>
-                <PlusCircle className="h-5 w-5 text-rose-300" />
+                <PlusCircle className="h-5 w-5 text-emerald-300" />
               </div>
 
               <button
                 type="button"
                 onClick={() => setIsAddShopOpen(true)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-rose-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-rose-400"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
               >
                 <PlusCircle className="h-4 w-4" />
                 Add shop
@@ -677,11 +677,11 @@ function Home() {
 
       {isAddShopOpen ? (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-950/70 px-4 py-6 backdrop-blur-sm sm:px-6 lg:px-8"
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-emerald-950/70 px-4 py-6 backdrop-blur-sm sm:px-6 lg:px-8"
           onClick={() => setIsAddShopOpen(false)}
         >
           <div
-            className="w-full max-w-4xl overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950 text-white shadow-[0_40px_120px_rgba(15,23,42,0.5)]"
+            className="w-full max-w-4xl overflow-hidden rounded-[2rem] border border-white/10 bg-emerald-950 text-white shadow-[0_40px_120px_rgba(15,23,42,0.5)]"
             role="dialog"
             aria-modal="true"
             aria-label="Add shop form"
@@ -689,7 +689,7 @@ function Home() {
           >
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-6">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rose-200">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-200">
                   Add shop
                 </p>
                 <h3 className="mt-1 text-2xl font-semibold text-white">Create a new listing</h3>
@@ -697,7 +697,7 @@ function Home() {
               <button
                 type="button"
                 onClick={() => setIsAddShopOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-emerald-200 transition hover:bg-white/10"
                 aria-label="Close add shop form"
               >
                 <X className="h-5 w-5" />
@@ -851,7 +851,7 @@ function Home() {
                   <button
                     type="submit"
                     disabled={isSubmittingShop}
-                    className="inline-flex items-center gap-2 rounded-2xl bg-rose-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-rose-400 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isSubmittingShop ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                     Add shop to server
@@ -884,7 +884,7 @@ function Home() {
       <section className="rounded-[2rem] border border-white/70 bg-white/80 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.06)] sm:p-6 lg:p-8">
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-rose-500">Results</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-600">Results</p>
             <h3 className="mt-1 text-2xl font-semibold text-slate-950">Closest stores</h3>
           </div>
 
@@ -896,11 +896,11 @@ function Home() {
 
         {shopsQuery.isLoading ? (
           <div className="rounded-2xl border border-dashed border-slate-200 p-10 text-center text-slate-500">
-            <Loader2 className="mx-auto h-6 w-6 animate-spin text-rose-500" />
+            <Loader2 className="mx-auto h-6 w-6 animate-spin text-emerald-600" />
             <p className="mt-3">Loading store catalog...</p>
           </div>
         ) : shopsQuery.isError ? (
-          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-rose-800">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-800">
             <div className="flex items-start gap-3">
               <WifiOff className="mt-0.5 h-5 w-5 shrink-0" />
               <div>
@@ -920,7 +920,7 @@ function Home() {
           </div>
         ) : nearbyShops.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-slate-200 p-10 text-center">
-            <AlertTriangle className="mx-auto h-10 w-10 text-rose-500" />
+            <AlertTriangle className="mx-auto h-10 w-10 text-emerald-600" />
             <p className="mt-4 text-lg font-semibold text-slate-950">No nearby stores found</p>
             <p className="mt-2 text-sm leading-6 text-slate-500">
               Try increasing the radius or changing the search term.
@@ -954,7 +954,7 @@ function Home() {
                     type="button"
                     onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
                     disabled={currentPage === totalPages}
-                    className="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex items-center justify-center rounded-2xl bg-emerald-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     Next
                   </button>

@@ -9,14 +9,14 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#E11D48', // A modern rose/red similar to food delivery apps
-          dark: '#BE123C',
-          light: '#F43F5E'
+          DEFAULT: '#059669', // Eco-friendly emerald green
+          dark: '#047857',
+          light: '#34D399'
         },
         dark: {
-          bg: '#121212',
-          surface: '#1E1E1E',
-          border: '#333333'
+          bg: '#052e16',
+          surface: '#0f172a',
+          border: '#14532d'
         }
       },
       fontFamily: {
