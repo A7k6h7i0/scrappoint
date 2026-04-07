@@ -1,0 +1,35 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="170" y1="70" x2="980" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBF3E4"/>
+      <stop offset="0.58" stop-color="#E6D7B6"/>
+      <stop offset="1" stop-color="#C4D4D8"/>
+    </linearGradient>
+    <linearGradient id="shop" x1="330" y1="240" x2="900" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#374151"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="awning" x1="300" y1="340" x2="900" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E97730"/>
+      <stop offset="1" stop-color="#C95B1E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#bg)"/>
+  <circle cx="980" cy="158" r="80" fill="#FFF5DB" fill-opacity="0.82"/>
+  <rect x="230" y="320" width="740" height="420" rx="38" fill="#F5F3EE" stroke="#CFD6D5" stroke-width="8"/>
+  <path d="M265 288H935L890 360H310L265 288Z" fill="url(#shop)"/>
+  <rect x="288" y="340" width="624" height="72" rx="20" fill="url(#awning)"/>
+  <path d="M320 340H384L366 412H302L320 340Z" fill="#F8EFE5"/>
+  <path d="M430 340H494L476 412H412L430 340Z" fill="#F2D8BF"/>
+  <path d="M540 340H604L586 412H522L540 340Z" fill="#F8EFE5"/>
+  <path d="M650 340H714L696 412H632L650 340Z" fill="#F2D8BF"/>
+  <path d="M760 340H824L806 412H742L760 340Z" fill="#F8EFE5"/>
+  <rect x="320" y="458" width="184" height="188" rx="24" fill="#D9E3E3"/>
+  <rect x="534" y="458" width="184" height="188" rx="24" fill="#D9E3E3"/>
+  <rect x="748" y="458" width="126" height="242" rx="24" fill="#1E293B"/>
+  <rect x="780" y="490" width="62" height="148" rx="14" fill="#F8EFE5"/>
+  <path d="M188 760C255 700 347 670 458 670H764C877 670 969 701 1036 760V900H188V760Z" fill="#79634C" fill-opacity="0.22"/>
+  <rect x="144" y="150" width="360" height="104" rx="28" fill="#FFF8EE" fill-opacity="0.6"/>
+  <text x="190" y="214" fill="#5B4027" font-family="Arial, sans-serif" font-size="44" font-weight="700">Verified Scrap Shops</text>
+  <text x="191" y="259" fill="#775B3A" font-family="Arial, sans-serif" font-size="28">Local buyers with photos, rates, and quick contact</text>
+</svg>

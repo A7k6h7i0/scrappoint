@@ -1,6 +1,19 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MapPin, Phone, Star, Store } from 'lucide-react';
+import { ArrowRight, MapPin, Phone, Star } from 'lucide-react';
+
+const fallbackImages = {
+  metal:
+    'https://images.unsplash.com/photo-1722695694560-f452b0919d3a?auto=format&fit=crop&w=1200&q=80',
+  ewaste:
+    'https://images.unsplash.com/photo-1755016388369-62f9c1a5133d?auto=format&fit=crop&w=1200&q=80',
+  plastic:
+    'https://images.unsplash.com/photo-1743342716826-1fb32cc467d9?auto=format&fit=crop&w=1200&q=80',
+  pickup:
+    'https://images.unsplash.com/photo-1761479578277-b11d0092699d?auto=format&fit=crop&w=1200&q=80',
+  shop:
+    'https://images.unsplash.com/photo-1767341372202-89cbaa6b5c87?auto=format&fit=crop&w=1200&q=80',
+};
 
 function getPrimaryTags(shop) {
   return String(shop.categories || shop.main_category || '')
@@ -21,6 +34,31 @@ function getFallbackDescription(shop, tags) {
   return `Trusted for ${categoryText.toLowerCase()} around ${location}. Quick contact and local pricing details available.`;
 }
 
+function getFallbackImage(shop, tags) {
+  const haystack = [shop.name, shop.main_category, shop.categories, tags.join(', ')]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  if (/(e-waste|electronic|battery|laptop|computer|appliance|wire|cable|copper)/.test(haystack)) {
+    return fallbackImages.ewaste;
+  }
+
+  if (/(paper|plastic|carton|bottle|book|newspaper|recycle)/.test(haystack)) {
+    return fallbackImages.plastic;
+  }
+
+  if (/(pickup|doorstep|home|office|collection)/.test(haystack)) {
+    return fallbackImages.pickup;
+  }
+
+  if (/(metal|iron|steel|aluminum|salvage|beam|factory|industrial)/.test(haystack)) {
+    return fallbackImages.metal;
+  }
+
+  return fallbackImages.shop;
+}
+
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
@@ -33,7 +71,8 @@ const cardVariants = {
 export default function ShopCard({ shop }) {
   const tags = getPrimaryTags(shop);
   const [imgFailed, setImgFailed] = useState(false);
-  const image = shop.featured_image || null;
+  const fallbackImage = getFallbackImage(shop, tags);
+  const image = shop.featured_image || fallbackImage;
   const hasImage = Boolean(image) && !imgFailed;
   const ratingLabel = formatRating(shop.rating);
   const isClosed = Boolean(shop.is_temporarily_closed);
@@ -59,11 +98,12 @@ export default function ShopCard({ shop }) {
             onError={() => setImgFailed(true)}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(180deg,#7d856c_0%,#545c47_100%)]">
-            <div className="flex h-20 w-20 items-center justify-center rounded-[1.7rem] border border-white/30 bg-white/12 text-white/90 backdrop-blur-md">
-              <Store className="h-9 w-9" />
-            </div>
-          </div>
+          <img
+            src={fallbackImage}
+            alt={shop.name || shop.shopName || 'Scrap shop illustration'}
+            className="h-full w-full object-cover object-center"
+            loading="lazy"
+          />
         )}
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,12,10,0.02)_0%,rgba(12,14,12,0.08)_45%,rgba(12,14,12,0.32)_100%)]" />

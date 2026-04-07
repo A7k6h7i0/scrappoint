@@ -1,0 +1,27 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="70" x2="990" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDF5E6"/>
+      <stop offset="0.52" stop-color="#F3D6B3"/>
+      <stop offset="1" stop-color="#C9DDBE"/>
+    </linearGradient>
+    <linearGradient id="bin" x1="260" y1="250" x2="760" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C9C55"/>
+      <stop offset="1" stop-color="#426339"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#bg)"/>
+  <ellipse cx="600" cy="760" rx="370" ry="84" fill="#6B7C54" fill-opacity="0.18"/>
+  <rect x="320" y="240" width="560" height="440" rx="46" fill="url(#bin)"/>
+  <rect x="360" y="190" width="480" height="92" rx="32" fill="#57784A"/>
+  <path d="M600 350C646 350 688 375 714 416C688 457 646 482 600 482C554 482 512 457 486 416C512 375 554 350 600 350Z" fill="#EAF4D5"/>
+  <path d="M544 418L587 462V506H612V460L655 418H623L600 443L576 418H544Z" fill="#5F8F39"/>
+  <rect x="250" y="520" width="150" height="190" rx="28" fill="#EFE4CE"/>
+  <rect x="808" y="500" width="160" height="210" rx="28" fill="#D9ECF6"/>
+  <rect x="874" y="450" width="40" height="56" rx="16" fill="#86C6DF"/>
+  <rect x="280" y="470" width="90" height="40" rx="14" fill="#D9C29C"/>
+  <path d="M288 430H372L362 470H298L288 430Z" fill="#D5B789"/>
+  <path d="M420 710H780" stroke="#F7ECD8" stroke-width="12" stroke-linecap="round"/>
+  <text x="205" y="120" fill="#5F4A2E" font-family="Arial, sans-serif" font-size="44" font-weight="700">Paper and Plastic Sorting</text>
+  <text x="206" y="166" fill="#7B6241" font-family="Arial, sans-serif" font-size="28">Cartons, bottles, books, and mixed home scrap</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="130" y1="90" x2="1030" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F0E3"/>
+      <stop offset="0.48" stop-color="#E4C69D"/>
+      <stop offset="1" stop-color="#AFC7C9"/>
+    </linearGradient>
+    <linearGradient id="truck" x1="250" y1="430" x2="870" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C96A37"/>
+      <stop offset="1" stop-color="#8A4124"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#bg)"/>
+  <rect y="640" width="1200" height="260" fill="#D9C5A6"/>
+  <rect y="700" width="1200" height="200" fill="#B69E79"/>
+  <rect x="210" y="450" width="420" height="170" rx="36" fill="url(#truck)"/>
+  <rect x="610" y="490" width="190" height="130" rx="30" fill="#A6532D"/>
+  <rect x="660" y="530" width="92" height="56" rx="14" fill="#D6EEF5"/>
+  <rect x="250" y="380" width="300" height="110" rx="22" fill="#476056"/>
+  <rect x="278" y="404" width="80" height="52" rx="12" fill="#DCE8DE"/>
+  <rect x="376" y="404" width="80" height="52" rx="12" fill="#DCE8DE"/>
+  <rect x="473" y="404" width="52" height="52" rx="12" fill="#DCE8DE"/>
+  <circle cx="336" cy="660" r="72" fill="#2C2C2C"/>
+  <circle cx="336" cy="660" r="34" fill="#CFC9BE"/>
+  <circle cx="676" cy="660" r="72" fill="#2C2C2C"/>
+  <circle cx="676" cy="660" r="34" fill="#CFC9BE"/>
+  <path d="M820 370C840 326 886 296 939 296C1005 296 1058 349 1058 415C1058 489 969 562 939 592C909 562 820 489 820 415C820 399 823 384 828 370Z" fill="#406B82"/>
+  <circle cx="939" cy="416" r="34" fill="#F8F3E5"/>
+  <rect x="190" y="210" width="340" height="94" rx="26" fill="#F9F4E8" fill-opacity="0.58"/>
+  <text x="235" y="268" fill="#65452E" font-family="Arial, sans-serif" font-size="42" font-weight="700">Doorstep Pickup</text>
+  <text x="236" y="317" fill="#7E6249" font-family="Arial, sans-serif" font-size="28">Fast collection for homes, offices, and workshops</text>
+</svg>

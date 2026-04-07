@@ -1,6 +1,19 @@
 import { useEffect, useEffectEvent, useState } from 'react';
 import { ArrowRight, MapPin, Sparkles } from 'lucide-react';
 
+const heroImages = {
+  metal:
+    'https://images.unsplash.com/photo-1722695694560-f452b0919d3a?auto=format&fit=crop&w=1400&q=80',
+  auto:
+    'https://images.unsplash.com/photo-1767341372202-89cbaa6b5c87?auto=format&fit=crop&w=1400&q=80',
+  plastic:
+    'https://images.unsplash.com/photo-1743342716826-1fb32cc467d9?auto=format&fit=crop&w=1400&q=80',
+  ewaste:
+    'https://images.unsplash.com/photo-1755016388369-62f9c1a5133d?auto=format&fit=crop&w=1400&q=80',
+  pickup:
+    'https://images.unsplash.com/photo-1761479578277-b11d0092699d?auto=format&fit=crop&w=1400&q=80',
+};
+
 const showcaseSlides = [
   {
     title: 'City Metal Exchange',
@@ -9,8 +22,7 @@ const showcaseSlides = [
     metricLabel: 'Avg. pickup window',
     metricValue: '45 min',
     accent: '#d86b38',
-    image:
-      'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1200&q=80',
+    image: heroImages.metal,
   },
   {
     title: 'Wire & Copper Recovery',
@@ -19,8 +31,7 @@ const showcaseSlides = [
     metricLabel: 'Today rate update',
     metricValue: '6:15 AM',
     accent: '#78954f',
-    image:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+    image: heroImages.ewaste,
   },
   {
     title: 'Neighborhood Recycle Hub',
@@ -29,8 +40,7 @@ const showcaseSlides = [
     metricLabel: 'Active collectors',
     metricValue: '28',
     accent: '#396f86',
-    image:
-      'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80',
+    image: heroImages.plastic,
   },
   {
     title: 'E-Waste Drop Center',
@@ -39,8 +49,7 @@ const showcaseSlides = [
     metricLabel: 'Verified drop points',
     metricValue: '12',
     accent: '#845ec2',
-    image:
-      'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?auto=format&fit=crop&w=1200&q=80',
+    image: heroImages.ewaste,
   },
   {
     title: 'Commercial Salvage Yard',
@@ -49,8 +58,7 @@ const showcaseSlides = [
     metricLabel: 'Bulk deals this week',
     metricValue: '86',
     accent: '#c0a062',
-    image:
-      'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80',
+    image: heroImages.auto,
   },
   {
     title: 'Scrap Pickup Network',
@@ -59,8 +67,7 @@ const showcaseSlides = [
     metricLabel: 'Routes running',
     metricValue: '24/7',
     accent: '#27856a',
-    image:
-      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
+    image: heroImages.pickup,
   },
 ];
 

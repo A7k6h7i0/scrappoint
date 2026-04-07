@@ -1,0 +1,36 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1010" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2F5EF"/>
+      <stop offset="0.55" stop-color="#C8DAD5"/>
+      <stop offset="1" stop-color="#91A4A6"/>
+    </linearGradient>
+    <linearGradient id="board" x1="310" y1="150" x2="890" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#245548"/>
+      <stop offset="1" stop-color="#123028"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" rx="48" fill="url(#bg)"/>
+  <rect x="180" y="120" width="840" height="660" rx="44" fill="url(#board)"/>
+  <rect x="220" y="160" width="760" height="580" rx="34" fill="#1B4337" stroke="#7FD1A7" stroke-width="6"/>
+  <rect x="300" y="240" width="210" height="130" rx="22" fill="#DCEBE4"/>
+  <rect x="560" y="220" width="120" height="200" rx="18" fill="#A6BFB7"/>
+  <rect x="720" y="250" width="180" height="110" rx="20" fill="#E5F5ED"/>
+  <rect x="315" y="430" width="310" height="180" rx="28" fill="#6E8A83"/>
+  <rect x="670" y="420" width="220" height="210" rx="24" fill="#C8E0D6"/>
+  <path d="M410 160V108" stroke="#8AE0B0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M790 160V108" stroke="#8AE0B0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M260 310H190" stroke="#8AE0B0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1010 470H940" stroke="#8AE0B0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M510 305H560" stroke="#94E5B6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M680 305H720" stroke="#94E5B6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M510 520H670" stroke="#94E5B6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M510 560H670" stroke="#94E5B6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M615 420V620" stroke="#94E5B6" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="810" cy="525" r="54" fill="#F0FAF5"/>
+  <path d="M810 482V568" stroke="#1B4337" stroke-width="18" stroke-linecap="round"/>
+  <path d="M770 525H850" stroke="#1B4337" stroke-width="18" stroke-linecap="round"/>
+  <rect x="150" y="720" width="900" height="110" rx="28" fill="#0E231E" fill-opacity="0.2"/>
+  <text x="210" y="782" fill="#F8FFFB" font-family="Arial, sans-serif" font-size="46" font-weight="700">E-Waste Recovery</text>
+  <text x="210" y="826" fill="#E2F7EC" font-family="Arial, sans-serif" font-size="28">Boards, wiring, batteries, and appliance parts</text>
+</svg>
