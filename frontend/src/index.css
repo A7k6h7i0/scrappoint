@@ -100,7 +100,7 @@
     padding: clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 2.4vw, 2rem);
     background:
       linear-gradient(180deg, rgba(18, 13, 9, 0.44), rgba(10, 8, 8, 0.56)),
-      url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=80');
+      url('/scrap.png');
     background-position: center;
     background-size: cover;
     overflow: hidden;
