@@ -31,7 +31,7 @@ export default function AddShopModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-950/60 px-4 py-8 backdrop-blur-lg sm:px-6"
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#1b1410]/65 px-4 py-8 backdrop-blur-lg sm:px-6"
           onClick={onClose}
         >
           <motion.div
@@ -39,17 +39,17 @@ export default function AddShopModal({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-card-elevated w-full max-w-5xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface-solid)] text-[var(--color-text)]"
+            className="glass-card-elevated w-full max-w-5xl overflow-hidden border border-[var(--page-border)] bg-[rgba(255,250,244,0.95)] text-[var(--page-text)]"
             role="dialog"
             aria-modal="true"
             aria-label="Add shop form"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-[var(--color-border)] px-6 py-5 sm:px-7">
+            <div className="flex items-center justify-between border-b border-[var(--page-border)] px-6 py-5 sm:px-7">
               <div>
                 <p className="section-label">Add shop</p>
-                <h3 className="mt-1 font-display text-2xl font-bold tracking-tight text-[var(--color-text)]">
+                <h3 className="mt-1 font-display text-2xl font-bold tracking-tight text-[var(--page-text)]">
                   Create a new listing
                 </h3>
               </div>
@@ -58,7 +58,7 @@ export default function AddShopModal({
                 onClick={onClose}
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.94 }}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-border-strong)] bg-[var(--color-surface-solid)] text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text)]"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--page-border-strong)] bg-[rgba(255,255,255,0.72)] text-[var(--page-muted)] transition-colors hover:text-[var(--page-text)]"
                 aria-label="Close"
               >
                 <X className="h-5 w-5" />
@@ -68,7 +68,7 @@ export default function AddShopModal({
             {/* Body */}
             <form onSubmit={onSubmit} className="grid gap-6 p-6 sm:p-7 lg:grid-cols-[0.9fr_1.1fr]">
               {/* Left: illustration */}
-              <div className="overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg-deep)]">
+              <div className="overflow-hidden rounded-3xl border border-[var(--page-border)] bg-[rgba(255,245,232,0.8)]">
                 <img
                   src={newShop.featured_image || shopHero}
                   alt="Shop scene"
@@ -80,51 +80,51 @@ export default function AddShopModal({
               <div className="space-y-4">
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Shop name *</span>
+                    <span className="font-medium text-[var(--page-muted)]">Shop name *</span>
                     <input value={newShop.name} onChange={updateField('name')} className="premium-input" placeholder="e.g. Vijetha Super Market" />
                   </label>
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Address *</span>
+                    <span className="font-medium text-[var(--page-muted)]">Address *</span>
                     <input value={newShop.address} onChange={updateField('address')} className="premium-input" placeholder="Full address" />
                   </label>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Main category</span>
+                    <span className="font-medium text-[var(--page-muted)]">Main category</span>
                     <input value={newShop.main_category} onChange={updateField('main_category')} className="premium-input" placeholder="Supermarket" />
                   </label>
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Categories</span>
+                    <span className="font-medium text-[var(--page-muted)]">Categories</span>
                     <input value={newShop.categories} onChange={updateField('categories')} className="premium-input" placeholder="Grocery, supermarket" />
                   </label>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Image URL</span>
+                    <span className="font-medium text-[var(--page-muted)]">Image URL</span>
                     <input value={newShop.featured_image} onChange={updateField('featured_image')} className="premium-input" placeholder="https://..." />
                   </label>
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Website</span>
+                    <span className="font-medium text-[var(--page-muted)]">Website</span>
                     <input value={newShop.website} onChange={updateField('website')} className="premium-input" placeholder="https://..." />
                   </label>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Phone</span>
+                    <span className="font-medium text-[var(--page-muted)]">Phone</span>
                     <input value={newShop.phone} onChange={updateField('phone')} className="premium-input" placeholder="Phone number" />
                   </label>
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Map link</span>
+                    <span className="font-medium text-[var(--page-muted)]">Map link</span>
                     <input value={newShop.link} onChange={updateField('link')} className="premium-input" placeholder="Google Maps URL" />
                   </label>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Latitude *</span>
+                    <span className="font-medium text-[var(--page-muted)]">Latitude *</span>
                     <input value={newShop.latitude} onChange={updateField('latitude')} className="premium-input" placeholder="17.123456" />
                   </label>
                   <label className="space-y-1.5 text-sm">
-                    <span className="font-medium text-[var(--color-text-secondary)]">Longitude *</span>
+                    <span className="font-medium text-[var(--page-muted)]">Longitude *</span>
                     <input value={newShop.longitude} onChange={updateField('longitude')} className="premium-input" placeholder="78.123456" />
                   </label>
                 </div>
@@ -163,15 +163,15 @@ export default function AddShopModal({
                     className={[
                       'rounded-xl border p-4 text-sm',
                       addShopState.status === 'success'
-                        ? 'border-primary-200 bg-primary-50 text-primary-800 dark:border-primary-400/15 dark:bg-primary-400/8 dark:text-primary-300'
-                        : 'border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-500/20 dark:bg-amber-400/8 dark:text-amber-300',
+                      ? 'border-[rgba(138,67,29,0.2)] bg-[rgba(138,67,29,0.08)] text-[var(--page-text)]'
+                        : 'border-amber-200 bg-amber-50 text-amber-800',
                     ].join(' ')}
                   >
                     {addShopState.message}
                   </div>
                 )}
 
-                <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">
+                <p className="text-xs leading-relaxed text-[var(--page-muted)]">
                   Coordinates are needed for location-based search. Click "Use my location" to auto-fill them.
                 </p>
               </div>
